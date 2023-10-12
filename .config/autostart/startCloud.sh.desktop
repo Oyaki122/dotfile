@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/oyaki/cloud/startCloud.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja]=cloud
+Name=cloud
+Comment[ja]=
+Comment=
