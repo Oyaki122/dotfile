@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/home/oyaki/.config/xkeysnail/startXkeysnail.sh
+Exec=~/.config/xkeysnail/startXkeysnail.sh
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
