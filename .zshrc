@@ -65,17 +65,23 @@ export PATH=$RISCV/bin:$PATH
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias l='exa -l -h -@ -m --icons --git --time-style=long-iso --color=automatic --group-directories-first'
 alias la='l -a'
+alias a='cd ../'
+alias aa='cd ../../'
+alias aaa='cd ../../../'
+alias aaaa='cd ../../../../'
+alias aaaaa='cd ../../../../../'
 
 alias swap='sudo swapoff -a && sudo swapon -a'
 alias cclear='sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"'
 
 source /opt/ros/humble/setup.zsh
 alias colb='cd ~/ros2_ws; colcon build --symlink-install --cmake-args " -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"; colcon_lncc; cd -'
-alias rospath='. ~/ros2_ws/install/setup.zsh'
+alias rospath='. ~/ros2_ws/install/setup.zsh && eval "$(register-python-argcomplete3 ros2)" && eval "$(register-python-argcomplete3 colcon)"'
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 eval "$(register-python-argcomplete3 ros2)"
 eval "$(register-python-argcomplete3 colcon)"
 export ROS_DOMAIN_ID=16
+
 
 export NVM_DIR="$HOME/.nvm"
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
@@ -120,6 +126,7 @@ function nvims() {
 bindkey -s ^a "nvims\n"
 
 export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
+export PATH=$PATH:/opt/st/stm32cubeclt/STLink-gdb-server/bin
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)

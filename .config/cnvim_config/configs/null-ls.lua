@@ -19,6 +19,10 @@ local sources = {
 
   -- ocaml
   b.formatting.ocamlformat,
+
+  -- cmake
+  b.formatting.cmake_format,
+
 }
 
 null_ls.setup {
