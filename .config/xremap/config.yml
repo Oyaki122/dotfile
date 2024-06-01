@@ -1,0 +1,18 @@
+keypress_delay_ms: 30
+modmap:
+  - name: Except Kicad
+    application:
+      not: /KiCad/
+    remap:
+      CAPSLOCK:
+        held: LEFTCTRL
+        alone: F14
+        alone_timeout_millis: 200
+keymap:
+  - name: esc and ime off
+    remap:
+      F14: [C-LEFTBRACE, MUHENKAN]
+  - name: toggle ime
+    remap:
+      LEFTShift-SPACE: C-Shift-F11
+

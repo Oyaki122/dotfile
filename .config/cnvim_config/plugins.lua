@@ -97,6 +97,15 @@ local plugins = {
 	--   "mg979/vim-visual-multi",
 	--   lazy = false,
 	-- }
+  {
+    "tani/dmacro.nvim",
+    event = "InsertEnter",
+    config = function()
+      require("dmacro").setup({
+        dmacro_key = '<C-t>'
+      })
+    end,
+  },
 }
 
 return plugins

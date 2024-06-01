@@ -75,12 +75,12 @@ alias swap='sudo swapoff -a && sudo swapon -a'
 alias cclear='sudo sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"'
 
 source /opt/ros/humble/setup.zsh
-alias colb='cd ~/ros2_ws; colcon build --symlink-install --cmake-args " -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo"; colcon_lncc; cd -'
-alias rospath='. ~/ros2_ws/install/setup.zsh && eval "$(register-python-argcomplete3 ros2)" && eval "$(register-python-argcomplete3 colcon)"'
+source ~/sick_ws/install/setup.zsh
+source ~/script/ros.zsh
 source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.zsh
 eval "$(register-python-argcomplete3 ros2)"
 eval "$(register-python-argcomplete3 colcon)"
-export ROS_DOMAIN_ID=16
+export ROS_DOMAIN_ID=1
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -140,3 +140,7 @@ zinit light-mode for \
 
 # opam configuration
 [[ ! -r /home/oyaki/.opam/opam-init/init.zsh ]] || source /home/oyaki/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# cargo
+. "$HOME/.cargo/env"
+fpath+=${ZDOTDIR:-~}/.zsh_functions

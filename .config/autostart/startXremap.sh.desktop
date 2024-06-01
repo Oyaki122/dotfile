@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/oyaki/dotfile/.config/xremap/startXremap.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[ja_JP]=xremap
+Name=xremap
+Comment[ja_JP]=
+Comment=
