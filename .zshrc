@@ -110,6 +110,7 @@ export PATH=$PATH:/usr/local/texlive/2023/bin/x86_64-linux
 alias rnvim="NVIM_APPNAME=richNvim nvim"
 alias snvim="NVIM_APPNAME=snvim nvim"
 alias cnvim="NVIM_APPNAME=cnvim nvim"
+alias dnvim="NVIM_APPNAME=dnvim nvim"
 
 function nvims() {
   items=("default" "richNvim")
@@ -127,6 +128,7 @@ bindkey -s ^a "nvims\n"
 
 export PATH=$PATH:/opt/gradle/gradle-8.1.1/bin
 export PATH=$PATH:/opt/st/stm32cubeclt/STLink-gdb-server/bin
+export PATH=$PATH:/opt/st/stm32cubeclt/GNU-tools-for-STM32/bin
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -144,3 +146,6 @@ zinit light-mode for \
 # cargo
 . "$HOME/.cargo/env"
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# groot
+source /usr/local/share/groot/local_setup.zsh
