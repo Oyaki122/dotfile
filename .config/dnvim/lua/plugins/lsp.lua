@@ -4,6 +4,14 @@ return {
     version = "*",
     lazy = false,
     config = function()
+      vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+        vim.lsp.handlers.hover,
+        {
+          border = "rounded", -- "single", "shadow" , "none", "rounded"
+          -- border = border
+          -- width = 100,
+        }
+      )
     end,
   },
   {
@@ -19,7 +27,7 @@ return {
     version = "*",
     lazy = false,
     config = function()
-      local lsp_servers = { "lua_ls", "yamlls", "jsonls" }
+      local lsp_servers = { "lua_ls", "yamlls", "jsonls", "verible" }
       local diagnostics = { "typos_lsp" }
       require("mason-lspconfig").setup {
         ensure_installed = vim.tbl_flatten({ lsp_servers, diagnostics }),
@@ -28,10 +36,10 @@ return {
       local lspconfig = require("lspconfig")
       local handlers = {
         function(server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {}
+          lspconfig[server_name].setup {}
         end,
         ["typos_lsp"] = function()
-          require("lspconfig").typos_lsp.setup {}
+          lspconfig.typos_lsp.setup {}
         end,
         ["lua_ls"] = function()
           lspconfig.lua_ls.setup {
@@ -43,6 +51,32 @@ return {
             }
           }
         end,
+        ["clangd"] = function()
+          lspconfig.clangd.setup {
+            -- on_attach = on_attach,
+            -- capabilities = cmp_nvim_lsp.default_capabilities(),
+            cmd = {
+              "clangd",
+              "--offset-encoding=utf-16",
+            },
+          }
+        end,
+        ["verible"] = function()
+          lspconfig.verible.setup {
+            filetypes = { "verilog", "systemverilog" },
+            cmd = {
+              "verible-verilog-ls",
+              "--rules=-packed-dimensions-range-ordering,-unpacked-dimensions-range-ordering",
+              "--indentation_spaces=4",
+              "--named_port_alignment=align",
+              "--named_port_indentation=indent",
+              "--port_declarations_alignment=align",
+              "--port_declarations_indentation=indent",
+              "--formal_parameters_indentation=indent",
+            },
+
+          }
+        end
 
       }
 
@@ -90,6 +124,20 @@ return {
         -- null_ls.builtins.formatting.lua_ls
       })
     end
+  },
+  {
+    "j-hui/fidget.nvim",
+    config = function()
+      require("fidget").setup()
+    end,
+    opts = {
+      -- options
+      integration = {
+        ["nvim-tree"] = {
+          enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+        },
+      },
+    }
   }
 
 }
