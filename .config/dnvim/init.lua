@@ -39,6 +39,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.hidden = true
 vim.opt.swapfile = false
 vim.opt.wrap = true
+
 vim.cmd("colorscheme  default")
 vim.opt.winblend = 0 -- ウィンドウの不透明度highlight Normal ctermbg=none
 vim.cmd("highlight Normal ctermbg=none")
@@ -58,7 +59,7 @@ require("lazy").setup({
 	-- Configure any other settings here. See the documentation for more details.
 	-- colorscheme that will be used when installing plugins.
 	install = {
-		-- colorscheme = { "habamax" },
+		colorscheme = { "catppuccin" },
 	},
 	-- automatically check for plugin updates
 	checker = { enabled = true },
