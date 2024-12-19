@@ -25,6 +25,7 @@ return {
         ensure_installed = vim.tbl_flatten({ lsp_servers, diagnostics }),
       }
 
+      local lspconfig = require("lspconfig")
       local handlers = {
         function(server_name) -- default handler (optional)
           require("lspconfig")[server_name].setup {}
@@ -33,7 +34,6 @@ return {
           require("lspconfig").typos_lsp.setup {}
         end,
         ["lua_ls"] = function()
-          local lspconfig = require("lspconfig")
           lspconfig.lua_ls.setup {
             settings = {
               Lua = {
