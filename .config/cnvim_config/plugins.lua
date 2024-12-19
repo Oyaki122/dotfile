@@ -37,21 +37,27 @@ local plugins = {
 		"nvim-tree/nvim-tree.lua",
 		opts = overrides.nvimtree,
 	},
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "windwp/nvim-autopairs",
+      config = function(_, opts)
+        require("nvim-autopairs").setup(opts)
+        local Rule = require('nvim-autopairs.rule')
+        local npairs = require('nvim-autopairs')
+        local cond = require('nvim-autopairs.conds')
+        npairs.remove_rule('`')
+        npairs.add_rule(
+          Rule("`","`")
+            :with_pair(cond.not_filetypes({"verilog", "systemverilog"}))
+        )
 
-	-- {
-	-- 	"windwp/nvim-autopairs",
-	-- 	opts = {
-	-- 		fast_wrap = {},
-	-- 		disable_filetype = { "TelescopePrompt", "vim" },
-	-- 	},
-	-- 	config = function(_, opts)
-	-- 		require("nvim-autopairs").setup(opts)
-	--
-	-- 		-- setup cmp for autopairs
-	-- 		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-	-- 		require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-	-- 	end,
-	-- },
+        -- setup cmp for autopairs
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
+      end,
+    },
+  },
 
 	-- Install a plugin
 	{
@@ -84,6 +90,47 @@ local plugins = {
 			})
 		end,
 	},
+
+  {
+    "soramugi/auto-ctags.vim",
+    config = function()
+      vim.g.auto_ctags = 1;
+    end
+  },
+
+  {
+    "rhysd/clever-f.vim",
+    event = "BufRead"
+  },
+
+  {
+    "unblevable/quick-scope",
+    event = "BufRead"
+  },
+
+  {
+    "monaqa/dial.nvim",
+    event = "BufRead"
+  },
+
+  {
+    "rapan931/lasterisk.nvim",
+    event = "BufRead",
+    config = function ()
+      vim.keymap.set('n', '*',  function()
+        require("lasterisk").search()
+      end)
+      vim.keymap.set('n', 'g*', function()
+        require("lasterisk").search({ is_whole = false })
+      end)
+      vim.keymap.set('x', 'g*', function()
+        require("lasterisk").search({ is_whole = false })
+      end)
+    end
+  }
+
+
+
 	-- To make a plugin not be loaded
 	-- {
 	--   "NvChad/nvim-colorizer.lua",
@@ -97,6 +144,15 @@ local plugins = {
 	--   "mg979/vim-visual-multi",
 	--   lazy = false,
 	-- }
+  --
+  -- {
+  --   "nat-418/tcl.nvim",
+  --   config = function()
+  --     -- vim.cmd.packadd('tcl.nvim')
+  --     require('tcl').setup()
+  --   end,
+  --   event = "BufRead"
+  -- }
 }
 
 return plugins

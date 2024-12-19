@@ -15,6 +15,7 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- lisp
 if not configs.cl_lsp then
 	configs.cl_lsp = {
 		default_config = {
@@ -24,7 +25,6 @@ if not configs.cl_lsp then
 		},
 	}
 end
-
 lspconfig.cl_lsp.setup({
 	on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = true
@@ -43,6 +43,42 @@ lspconfig.cl_lsp.setup({
 	capabilities = capabilities,
 })
 
+-- verilog
+if not configs.veridian then
+  local util = require('lspconfig/util')
+	local root_pattern = util.root_pattern("veridian.yml", ".git")
+
+	configs.veridian = {
+		default_config = {
+			cmd = { "veridian" },
+			filetypes = { "systemverilog", "verilog" },
+			root_dir = function(fname)
+				local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
+				return root_pattern(filename) or util.path.dirname(filename)
+			end,
+			settings = {},
+		},
+	}
+end
+lspconfig.veridian.setup({
+	on_attach = function(client, bufnr)
+		client.server_capabilities.documentFormattingProvider = true
+		client.server_capabilities.documentRangeFormattingProvider = true
+
+		utils.load_mappings("lspconfig", { buffer = bufnr })
+
+		if client.server_capabilities.signatureHelpProvider then
+			require("nvchad.signature").setup(client)
+		end
+
+		if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method("textDocument/semanticTokens") then
+			client.server_capabilities.semanticTokensProvider = nil
+		end
+	end,
+	capabilities = capabilities,
+})
+
+-- VENV
 local virtual_env_path = vim.trim(vim.fn.system("poetry config virtualenvs.path"))
 local virtual_env_dirctory = string.gsub(vim.trim(vim.fn.system("poetry env list")), " %(Activated%)", "")
 

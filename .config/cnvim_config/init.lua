@@ -23,25 +23,27 @@ vim.opt.backup = false
 vim.opt.showcmd = true
 vim.opt.cmdheight = 2
 vim.opt.laststatus = 2
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.scrolloff = 10
 vim.opt.inccommand = 'split'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.smarttab = true
 vim.opt.breakindent = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
 vim.opt.wrap = true
 vim.opt.helplang = 'ja','en'
 vim.opt.updatetime = 300
-vim.opt.showtabline = 2
+vim.opt.showtabline = 4
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.termguicolors = true
 vim.opt.signcolumn = 'yes'
 vim.opt.hidden = true
 vim.opt.swapfile = false
 vim.opt.wrap = true
+
+-- vim.opt.tags = './tags', 'tags'
 
 -- float-transparent
 vim.opt.winblend = 5
