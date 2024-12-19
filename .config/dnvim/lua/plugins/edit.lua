@@ -70,7 +70,7 @@ return {
       require('nvim-treesitter.configs').setup {
         textsubjects = {
           enable = true,
-          prev_selection = ',',     -- (Optional) keymap to select the previous selection
+          prev_selection = ',', -- (Optional) keymap to select the previous selection
           keymaps = {
             ['.'] = 'textsubjects-smart',
             [';'] = 'textsubjects-container-outer',
@@ -78,6 +78,19 @@ return {
           },
         },
       }
+    end
+  },
+
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    config = function()
+      local Rule = require('nvim-autopairs.rule')
+      local npairs = require('nvim-autopairs')
+      local cond = require('nvim-autopairs.conds')
+      npairs.setup({})
+      npairs.add_rule(Rule("begin", "end", "verilog"))
+      npairs.add_rule(Rule("`", "`"):with_pair(cond.not_filetypes({ "verilog" })))
     end
   }
 }
