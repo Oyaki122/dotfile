@@ -4,4 +4,3 @@ if [ -x /usr/local/bin/xkeysnail ]; then
     xkeysnail  "/home/oyaki/.config/xkeysnail/config.py" --device "/dev/input/event4" &
 fi
 
-#xkeysnail config.py

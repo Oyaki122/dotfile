@@ -144,15 +144,24 @@ local plugins = {
 	--   "mg979/vim-visual-multi",
 	--   lazy = false,
 	-- }
-  --
-  -- {
-  --   "nat-418/tcl.nvim",
-  --   config = function()
-  --     -- vim.cmd.packadd('tcl.nvim')
-  --     require('tcl').setup()
-  --   end,
-  --   event = "BufRead"
-  -- }
+	--
+	-- {
+	--   "nat-418/tcl.nvim",
+	--   config = function()
+	--     -- vim.cmd.packadd('tcl.nvim')
+	--     require('tcl').setup()
+	--   end,
+	--   event = "BufRead"
+	-- }
+	{
+	  "tani/dmacro.nvim",
+	  event = "InsertEnter",
+	  config = function()
+	    require("dmacro").setup({
+	      dmacro_key = '<C-t>'
+	    })
+	  end,
+	},
 }
 
 return plugins
